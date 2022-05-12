@@ -2,6 +2,7 @@
 #define SPONGE_LIBSPONGE_BYTE_STREAM_HH
 
 #include <string>
+#include <cmath>
 
 //! \brief An in-order byte stream.
 
@@ -25,7 +26,7 @@ class ByteStream {
 
     //! \name "Input" interface for the writer
     //!@{
-
+    bool eof_signal{};
     //! Write a string of bytes into the stream. Write as many
     //! as will fit, and return how many were written.
     //! \returns the number of bytes accepted into the stream
@@ -79,7 +80,19 @@ class ByteStream {
 
     //! Total number of bytes popped
     size_t bytes_read() const;
+
+    size_t read_cur{0};
+    size_t write_cur{0};
     //!@}
+  private:
+    
+    size_t written{0};
+    size_t readed{0};
+    size_t _capacity;
+    std::string streamBUf{};
+    bool stream_full{};
+    bool input_end_flag{};
+    size_t remain_capa;
 };
 
 #endif  // SPONGE_LIBSPONGE_BYTE_STREAM_HH

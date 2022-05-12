@@ -74,7 +74,7 @@ int main() {
             test.execute(Write{"abcdef"}.with_bytes_written(3));
             test.execute(Peek{"abc"});
             test.execute(Pop{1});
-
+//99997
             for (unsigned int i = 0; i < 99997; i++) {
                 test.execute(RemainingCapacity{1});
                 test.execute(BufferSize{2});
@@ -101,6 +101,8 @@ int main() {
             test.execute(EndInput{});
             test.execute(Peek{"bc"});
             test.execute(Pop{2});
+            test.execute(BufferSize{0});
+            test.execute(RemainingCapacity{3});
             test.execute(Eof{true});
         }
 
